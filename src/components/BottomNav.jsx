@@ -1,29 +1,50 @@
 import React from 'react';
-import { Compass, Navigation, Bus, ShieldAlert, User } from 'lucide-react';
+import { Home, Navigation2, Bus, ShieldAlert, User, Sparkles } from 'lucide-react';
 
 export default function BottomNav({ tab, setTab, lang }) {
+  const isBn = lang === 'bn';
+
   const navItems = [
-    { id: 'home', label: lang === 'bn' ? 'হোম' : 'Home', icon: Compass },
-    { id: 'map', label: lang === 'bn' ? 'ম্যাপ' : 'Map', icon: Navigation },
-    { id: 'transit', label: lang === 'bn' ? 'শাটল' : 'Transit', icon: Bus },
-    { id: 'services', label: lang === 'bn' ? 'সেবা' : 'Services', icon: ShieldAlert },
-    { id: 'profile', label: lang === 'bn' ? 'প্রোফাইল' : 'Profile', icon: User }
+    { id: 'home', icon: Home, label: isBn ? 'হোম' : 'Home' },
+    { id: 'map', icon: Navigation2, label: isBn ? 'ম্যাপ' : 'Map' },
+    { id: 'action', icon: Sparkles, isCenter: true },
+    { id: 'transit', icon: Bus, label: isBn ? 'বাস' : 'Bus' },
+    { id: 'profile', icon: User, label: isBn ? 'আইডি' : 'User' },
   ];
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-[#080F1D]/95 backdrop-blur-md border-t border-white/10 px-4 py-2.5 flex justify-between items-center z-50">
-      {navItems.map(item => (
-        <button
-          key={item.id}
-          onClick={() => setTab(item.id)}
-          className={`flex flex-col items-center gap-1 py-1 px-3 rounded-xl transition cursor-pointer ${
-            tab === item.id ? 'text-[#00F2FE] bg-[#00F2FE]/10' : 'text-slate-400 hover:text-slate-200'
-          }`}
-        >
-          <item.icon className="w-5 h-5" />
-          <span className="text-[10px] font-medium">{item.label}</span>
-        </button>
-      ))}
-    </nav>
+    <div className="fixed bottom-4 inset-x-0 flex justify-center z-50 pointer-events-none px-4">
+      <nav className="pointer-events-auto flex items-center gap-1.5 px-3 py-2 rounded-full bg-slate-900/85 backdrop-blur-2xl border border-white/15 shadow-[0_16px_40px_rgba(0,0,0,0.8)]">
+        {navItems.map((item, idx) => {
+          if (item.isCenter) {
+            return (
+              <button
+                key={idx}
+                onClick={() => setTab('map')}
+                className="w-11 h-11 mx-1 rounded-full bg-gradient-to-tr from-cyan-400 to-blue-600 flex items-center justify-center text-black shadow-[0_0_20px_rgba(0,242,254,0.6)] active:scale-90 transition transform"
+              >
+                <Sparkles className="w-5 h-5 fill-black stroke-black" />
+              </button>
+            );
+          }
+
+          const isActive = tab === item.id;
+          return (
+            <button
+              key={item.id}
+              onClick={() => setTab(item.id)}
+              className={`flex flex-col items-center justify-center w-12 py-1.5 rounded-full transition-all duration-300 ${
+                isActive 
+                  ? 'text-cyan-400 font-bold' 
+                  : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              <item.icon className={`w-4 h-4 ${isActive ? 'stroke-[2.5] scale-110' : ''} transition`} />
+              <span className="text-[10px] mt-0.5 tracking-tight">{item.label}</span>
+            </button>
+          );
+        })}
+      </nav>
+    </div>
   );
 }
