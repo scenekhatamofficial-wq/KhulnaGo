@@ -1,0 +1,9 @@
+{
+  "appId": "com.khulna.khulnago",
+  "appName": "KhulnaGo",
+  "webDir": "dist",
+  "bundledWebRuntime": false,
+  "server": {
+    "androidScheme": "https"
+  }
+}

@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">KhulnaGo</string>
+    <string name="title_activity_main">KhulnaGo</string>
+    <string name="package_name">com.khulna.khulnago</string>
+    <string name="custom_url_scheme">com.khulna.khulnago</string>
+</resources>

@@ -1,0 +1,16 @@
+{
+  "short_name": "KhulnaGo",
+  "name": "KhulnaGo — স্মার্ট খুলনা ট্রানজিট",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "192x192 512x512"
+    }
+  ],
+  "start_url": "./",
+  "background_color": "#080F1D",
+  "theme_color": "#080F1D",
+  "display": "standalone",
+  "orientation": "portrait"
+}
